@@ -9,11 +9,15 @@ spec:
   selector:
     matchLabels:
       app: wordpress
+      id: C0905650
+      env: dev
   replicas: 1
   template:
     metadata:
       labels:
         app: wordpress
+        id: C0905650
+        env: dev
     spec:
       containers:
       - name: wordpress
@@ -22,21 +26,21 @@ spec:
           - containerPort: 80
         env:
           - name: WORDPRESS_DB_HOST
-            value: mariadb.wordpress-db.svc.cluster.local  # Host of the MariaDB service
+            value: mariadb.wordpress-db.svc.cluster.local 
           - name: WORDPRESS_DB_NAME
             valueFrom:
               secretKeyRef:
-                name: wordpress-secret
+                name: db-secret
                 key: MYSQL_DATABASE
           - name: WORDPRESS_DB_USER
             valueFrom:
               secretKeyRef:
-                name: wordpress-secret
+                name: db-secret
                 key: MYSQL_USER
           - name: WORDPRESS_DB_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: wordpress-secret
+                name: db-secret
                 key: MYSQL_PASSWORD
         volumeMounts:
           - name: wordpress-storage
@@ -53,9 +57,12 @@ metadata:
   name: wordpress
   namespace: wordpress
 spec:
-  type: LoadBalancer  # Or NodePort depending on your setup
+  type: LoadBalancer  
   ports:
     - port: 80
   selector:
     app: wordpress
+    id: C0905650
+    env: dev
+
 

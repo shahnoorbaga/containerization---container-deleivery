@@ -2,16 +2,15 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nginx-proxy-service
-  namespace: proxy
+  namespace: nginx-proxy
   labels:
-    id: c0905650
     app: nginx-proxy
-    env: dev
 spec:
-  type: LoadBalancer # Or NodePort depending on your cluster setup
+  type: LoadBalancer 
   selector:
-    id: c0905650
+    app: nginx-proxy
+
   ports:
   - protocol: TCP
-    port: 80  # External port
+    port: 80  
     targetPort: 80

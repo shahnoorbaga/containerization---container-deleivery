@@ -9,11 +9,15 @@ spec:
   selector:
     matchLabels:
       app: mariadb
+      id: C0905650
+      env: dev
   replicas: 1
   template:
     metadata:
       labels:
         app: mariadb
+	id: C0905650
+        env: dev
     spec:
       containers:
       - name: mariadb
@@ -60,4 +64,5 @@ spec:
     - port: 3306
   selector:
     app: mariadb
-
+    id: C0905650
+    env: dev
