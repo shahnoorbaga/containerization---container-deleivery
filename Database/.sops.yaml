@@ -1,0 +1,6 @@
+creation_rules:
+  - gcp_kms: projects/shahnoor/locations/northamerica-northeast2/keyRings/shahnoor-kms/cryptoKeys/shahnoor-key
+    # Specify any file patterns you want to auto-encrypt
+    path_regex: '.*\.yaml$'
+    encrypted_regex: '^(data)$'
+
